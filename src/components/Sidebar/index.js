@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export default class Sidebar extends Component {
-  render() {
-    const  {modules} = this.state
-    return (
-      <aside>
+import { connect } from 'react-redux' //to get the modules from the store || the state of redux
+
+const Sidebar = ({modules}) => (
+  <aside>
         { modules.map(module => (
           <div key={module.id} >
             <strong> {module.title} </strong>
@@ -16,6 +15,11 @@ export default class Sidebar extends Component {
           </div>
         )) }
       </aside>
-    )
-  }
-}
+)
+
+/* 
+first parameter of connect is a function that returns the state and should return wich properties I want from that state
+connect(function(){something from the state},) 
+*/
+
+export default connect(state => ({ modules: state.modules }))(Sidebar);

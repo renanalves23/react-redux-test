@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux'
 import store from './store'
 
-import Sidebar from './Sidebar';
-import Video from './Video';
+import Sidebar from './components/Sidebar';
+import Video from './components/Video';
 
 function App() {
  
