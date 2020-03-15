@@ -1,12 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Video extends Component {
-  render() {
-    return (
-      <div>
-        <strong>Modulo X</strong>
-        <span>Aula X</span>
-      </div>
-    )
-  }
-}
+import { connect } from 'react-redux'
+
+
+// at first, it already gets the initial state that can not be null, so I turned it as an empty object, so we dont get an error
+const Video = ({ activeModule, activeLesson }) => (
+  <div>
+    <strong>Modulo {activeModule.title} </strong>
+    <span>Aula {activeLesson.title} </span>
+  </div>
+)
+
+export default connect(state => ({
+  activeModule: state.activeModule,
+  activeLesson: state.activeLesson
+}))(Video)

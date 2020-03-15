@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux' //to get the modules from the store || the state of redux
 
+/* Action */
 function toggleLesson(module, lesson){
   return{
     type: 'TOGGLE_LESSON',
@@ -9,6 +10,8 @@ function toggleLesson(module, lesson){
     lesson,
   }
 }
+  /*end Action that is dispatched below onClick*/
+
 
 const Sidebar = ({ modules, dispatch }) => (
   <aside>
