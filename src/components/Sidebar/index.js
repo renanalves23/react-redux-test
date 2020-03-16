@@ -2,16 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux' //to get the modules from the store || the state of redux
 
-/* Action */
-function toggleLesson(module, lesson){
-  return{
-    type: 'TOGGLE_LESSON',
-    module,
-    lesson,
-  }
-}
-  /*end Action that is dispatched below onClick*/
-
+import * as CourseActions from '../../store/actions/course'
 
 const Sidebar = ({ modules, dispatch }) => (
   <aside>
@@ -22,7 +13,7 @@ const Sidebar = ({ modules, dispatch }) => (
               { module.lessons.map(lesson => (
                 <li key={lesson.id} > 
                   {lesson.title} 
-                  <button onClick={() => dispatch(toggleLesson(module, lesson)) } >Selecionar</button>
+                  <button onClick={() => dispatch(CourseActions.toggleLesson(module, lesson)) } >Selecionar</button>
                   </li>
               )) }
             </ul>
@@ -36,4 +27,21 @@ first parameter of connect is a function that returns the state and should retur
 connect(function(){something from the state},) 
 */
 
-export default connect(state => ({ modules: state.modules }))(Sidebar);
+const mapStateToProps = state => ({
+  modules: state.course.modules
+});
+
+
+/*
+ //it's used for containing the actions. Mostly, button actions
+
+const mapDispatchToProps = dispatch => ({
+
+
+})
+*/
+//it's used for containing the actions. Mostly, button actions
+
+
+
+export default connect(mapStateToProps)(Sidebar);
